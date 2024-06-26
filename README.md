@@ -17,6 +17,7 @@ Use postman runner
 **Method 2**
 - Use Newman 
 - **Pre-conditions**
+
 The user has node installed   
 The user has newman installed 
 
