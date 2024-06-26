@@ -1,0 +1,2452 @@
+{
+	"info": {
+		"_postman_id": "07ce5fc0-61ba-4b3a-8214-daafd2368c8b",
+		"name": "Oyebode_Lendsqr_Assessment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33019136",
+		"_collection_link": "https://orange-spaceship-265967.postman.co/workspace/OyebodeDaniel~a01cb8c6-2ca1-445c-809c-868a28f5774e/collection/33019136-07ce5fc0-61ba-4b3a-8214-daafd2368c8b?action=share&source=collection_link&creator=33019136"
+	},
+	"item": [
+		{
+			"name": "Vaidation",
+			"item": [
+				{
+					"name": "Initialize BVN Accounts Consent",
+					"item": [
+						{
+							"name": "Initialize BVN Accounts Consent - Successful",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Initialize BVN Accounts Consent - Request Status is returned \", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.status).to.contains(\"otp\");\r",
+											"});\r",
+											"pm.test(\"Initialize BVN Accounts Consent - Response Message is returned\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.contains(\"Please provide OTP sent to contact\");\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{TOKEN}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"contact\": \"bode***dipe49@yahoo.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://adjutor.lendsqr.com/v2/verification/bvn/:bvn/accounts",
+									"protocol": "https",
+									"host": [
+										"adjutor",
+										"lendsqr",
+										"com"
+									],
+									"path": [
+										"v2",
+										"verification",
+										"bvn",
+										":bvn",
+										"accounts"
+									],
+									"variable": [
+										{
+											"key": "bvn",
+											"value": "22402077970"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Initialize BVN Accounts Consent - No Auth",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 401\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											"pm.test(\"Initialize BVN Accounts Consent - Error Message is returned \", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.contains(\"Invalid Authorization\");\r",
+											"});\r",
+											"pm.test(\"Initialize BVN Accounts Consent - Status is returned \", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.status).to.contains(\"error\");\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer sk_live_0y8a0NrPNnONl7OsZZvPb37TJP61klwr39n66urf",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"contact\": \"bode***dipe49@yahoo.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://adjutor.lendsqr.com/v2/verification/bvn/:bvn/accounts",
+									"protocol": "https",
+									"host": [
+										"adjutor",
+										"lendsqr",
+										"com"
+									],
+									"path": [
+										"v2",
+										"verification",
+										"bvn",
+										":bvn",
+										"accounts"
+									],
+									"variable": [
+										{
+											"key": "bvn",
+											"value": "22402077970"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Initialize BVN Accounts Consent - No BVN",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Initialize BVN Accounts Consent - No BVN Passed in request\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.contains(\"BVN is Required\");\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{TOKEN}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"contact\": \"bode***dipe49@yahoo.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://adjutor.lendsqr.com/v2/verification/bvn/:bvn/accounts",
+									"protocol": "https",
+									"host": [
+										"adjutor",
+										"lendsqr",
+										"com"
+									],
+									"path": [
+										"v2",
+										"verification",
+										"bvn",
+										":bvn",
+										"accounts"
+									],
+									"variable": [
+										{
+											"key": "bvn",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Initialize BVN Accounts Consent - No Contact",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Initialize BVN Accounts Consent - No Contact Passed in request\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.contains(\"Contact is Required\");\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{TOKEN}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"contact\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://adjutor.lendsqr.com/v2/verification/bvn/:bvn/accounts",
+									"protocol": "https",
+									"host": [
+										"adjutor",
+										"lendsqr",
+										"com"
+									],
+									"path": [
+										"v2",
+										"verification",
+										"bvn",
+										":bvn",
+										"accounts"
+									],
+									"variable": [
+										{
+											"key": "bvn",
+											"value": "22402077970"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Initialize BVN Accounts Consent - Invalid Contact",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Initialize BVN Accounts Consent - Invalid Contact Passed in request\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.contains(\"Please provide a valid phone number\");\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{TOKEN}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"contact\": \"0903*\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://adjutor.lendsqr.com/v2/verification/bvn/:bvn/accounts",
+									"protocol": "https",
+									"host": [
+										"adjutor",
+										"lendsqr",
+										"com"
+									],
+									"path": [
+										"v2",
+										"verification",
+										"bvn",
+										":bvn",
+										"accounts"
+									],
+									"variable": [
+										{
+											"key": "bvn",
+											"value": "22402077970"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Verify Customer Bank Account",
+					"item": [
+						{
+							"name": "Verify Customer Bank Account - Successful",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Verify Customer Bank Account - Successful\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.status).to.contain(\"success\");\r",
+											"});\r",
+											"pm.test(\"Verify Customer Bank Account - Verify that a success response is returned\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.eql(\"Successful\");\r",
+											"});\r",
+											"pm.test(\"Verify Customer Bank Account - Verify that customer details is returned\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.data).to.not.empty;\r",
+											"    pm.expect(jsonData.data.bank_code).to.not.empty;\r",
+											"    pm.expect(jsonData.data.account_name).to.not.empty;\r",
+											"    pm.expect(jsonData.data.account_number).to.not.empty;\r",
+											"    pm.expect(jsonData.data.bvn).to.not.empty;\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{TOKEN}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"account_number\": \"0254608475\",\r\n    \"bank_code\": \"058\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://adjutor.lendsqr.com/v2/verification/bankaccount/bvn",
+									"protocol": "https",
+									"host": [
+										"adjutor",
+										"lendsqr",
+										"com"
+									],
+									"path": [
+										"v2",
+										"verification",
+										"bankaccount",
+										"bvn"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Verify Customer Bank Account - No Auth",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 401\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											"pm.test(\"Verify Customer Bank Account - Verify that the appropriate error is returned when auth isn't passed in the header \", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.contains(\"Invalid Authorization\");\r",
+											"});\r",
+											"pm.test(\"Verify Customer Bank Account - Verify that the appropriate status is returned when auth isn't passed in the header \", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.status).to.contains(\"error\");\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{TOKEN}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"account_number\": \"0254608475\",\r\n    \"bank_code\": \"058\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://adjutor.lendsqr.com/v2/verification/bankaccount/bvn",
+									"protocol": "https",
+									"host": [
+										"adjutor",
+										"lendsqr",
+										"com"
+									],
+									"path": [
+										"v2",
+										"verification",
+										"bankaccount",
+										"bvn"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Verify Customer Bank Account - No Account Number",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Verify Customer Bank Account - Verify that the appropriate error is returned when account number isn't passed in the payload\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.contains(\"Account Number is required\");\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{TOKEN}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"account_number\": \"\",\r\n    \"bank_code\": \"058\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://adjutor.lendsqr.com/v2/verification/bankaccount/bvn",
+									"protocol": "https",
+									"host": [
+										"adjutor",
+										"lendsqr",
+										"com"
+									],
+									"path": [
+										"v2",
+										"verification",
+										"bankaccount",
+										"bvn"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Verify Customer Bank Account - Invalid Account Number",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Verify Customer Bank Account - Verify that the appropriate error is returned when an invalid account number is passed in the payload\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.contains(\"Invalid Account Number\");\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{TOKEN}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"account_number\": \"02546&eu\",\r\n    \"bank_code\": \"058\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://adjutor.lendsqr.com/v2/verification/bankaccount/bvn",
+									"protocol": "https",
+									"host": [
+										"adjutor",
+										"lendsqr",
+										"com"
+									],
+									"path": [
+										"v2",
+										"verification",
+										"bankaccount",
+										"bvn"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Verify Customer Bank Account - Incomplete Account Number",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Verify Customer Bank Account- Verify that the appropriate error is returned when an incomplete account number is passed in the payload\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.contains(\"Account Number must be 10 digits\");\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{TOKEN}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"account_number\": \"02546\",\r\n    \"bank_code\": \"058\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://adjutor.lendsqr.com/v2/verification/bankaccount/bvn",
+									"protocol": "https",
+									"host": [
+										"adjutor",
+										"lendsqr",
+										"com"
+									],
+									"path": [
+										"v2",
+										"verification",
+										"bankaccount",
+										"bvn"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Verify Customer Bank Account - No Bank Code",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Verify Customer Bank Account - Verify that the appropriate error is returned when bank code isn't passed in the payload\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.contains(\"Bank Code is required\");\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{TOKEN}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"account_number\": \"0254608475\",\r\n    \"bank_code\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://adjutor.lendsqr.com/v2/verification/bankaccount/bvn",
+									"protocol": "https",
+									"host": [
+										"adjutor",
+										"lendsqr",
+										"com"
+									],
+									"path": [
+										"v2",
+										"verification",
+										"bankaccount",
+										"bvn"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Verify Customer Bank Account - Invalid Bank Code",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Verify Customer Bank Account - Verify that the appropriate error is returned when an invalid bank code is passed in the payload\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.contains(\"Bank Code is invalid\");\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{TOKEN}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"account_number\": \"0254608475\",\r\n    \"bank_code\": \"*dh\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://adjutor.lendsqr.com/v2/verification/bankaccount/bvn",
+									"protocol": "https",
+									"host": [
+										"adjutor",
+										"lendsqr",
+										"com"
+									],
+									"path": [
+										"v2",
+										"verification",
+										"bankaccount",
+										"bvn"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Credit Bureaus",
+			"item": [
+				{
+					"name": "Get Credit Report from CRC Credit Bureau",
+					"item": [
+						{
+							"name": "Get Credit Report from CRC Credit Bureau - No BVN",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Get Credit Report from CRC Credit Bureau - Verify that the appropriate error is returned when BVN isn't passed as a path parameter\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.contains(\"Report error\");\r",
+											"});\r",
+											"pm.test(\"Get Credit Report from CRC Credit Bureau - Verify that the appropriate status is returned when BVN isn't passed as an header parameter\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.status).to.contains(\"error\");\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{TOKEN}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://adjutor.lendsqr.com/v2/creditbureaus/crc/:bvn",
+									"protocol": "https",
+									"host": [
+										"adjutor",
+										"lendsqr",
+										"com"
+									],
+									"path": [
+										"v2",
+										"creditbureaus",
+										"crc",
+										":bvn"
+									],
+									"variable": [
+										{
+											"key": "bvn",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Credit Report from CRC Credit Bureau - No Auth",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 401\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											"pm.test(\"Get Credit Report from CRC Credit Bureau - Verify that the appropriate error is returned when token isn't passed in the header\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.contains(\"Invalid Authorization\");\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{TOKEN}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "https://adjutor.lendsqr.com/v2/creditbureaus/crc/:bvn",
+									"protocol": "https",
+									"host": [
+										"adjutor",
+										"lendsqr",
+										"com"
+									],
+									"path": [
+										"v2",
+										"creditbureaus",
+										"crc",
+										":bvn"
+									],
+									"variable": [
+										{
+											"key": "bvn",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Credit Report from CRC Credit Bureau - Invalid BVN",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Get Credit Report from CRC Credit Bureau - Verify that the appropriate error is returned when an invalid BVN is passed as a path parameter\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.contains(\"Invlaid BVN\");\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{TOKEN}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://adjutor.lendsqr.com/v2/creditbureaus/crc/:bvn",
+									"protocol": "https",
+									"host": [
+										"adjutor",
+										"lendsqr",
+										"com"
+									],
+									"path": [
+										"v2",
+										"creditbureaus",
+										"crc",
+										":bvn"
+									],
+									"variable": [
+										{
+											"key": "bvn",
+											"value": "222933*&^%$"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Credit Report from CRC Credit Bureau - Incomplete BVN",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Get Credit Report from CRC Credit Bureau - Verify that the appropriate error is returned when an incomplete BVN is passed as a path parameter\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.contains(\"Report error\");\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{TOKEN}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://adjutor.lendsqr.com/v2/creditbureaus/crc/:bvn",
+									"protocol": "https",
+									"host": [
+										"adjutor",
+										"lendsqr",
+										"com"
+									],
+									"path": [
+										"v2",
+										"creditbureaus",
+										"crc",
+										":bvn"
+									],
+									"variable": [
+										{
+											"key": "bvn",
+											"value": "222933"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get Credit Report from FirstCentral Credit Bureau",
+					"item": [
+						{
+							"name": "Get Credit Report from FirstCentral Credit Bureau - No Auth",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 401\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											"pm.test(\"Get Credit Report from FirstCentral  Credit Bureau - Verify that the appropriate error is returned when token isn't path in the header\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.contains(\"Invalid Authorization\");\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{TOKEN}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "https://adjutor.lendsqr.com/v2/creditbureaus/firstcentral/:bvn",
+									"protocol": "https",
+									"host": [
+										"adjutor",
+										"lendsqr",
+										"com"
+									],
+									"path": [
+										"v2",
+										"creditbureaus",
+										"firstcentral",
+										":bvn"
+									],
+									"variable": [
+										{
+											"key": "bvn",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Credit Report from FirstCentral Credit Bureau - No BVN",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Get Credit Report from FirstCentral Credit Bureau - Verify that the appropriate error is returned when BVN isn't passed as a path parameter\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.contains(\"BVN is required\");\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{TOKEN}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://adjutor.lendsqr.com/v2/creditbureaus/firstcentral/:bvn",
+									"protocol": "https",
+									"host": [
+										"adjutor",
+										"lendsqr",
+										"com"
+									],
+									"path": [
+										"v2",
+										"creditbureaus",
+										"firstcentral",
+										":bvn"
+									],
+									"variable": [
+										{
+											"key": "bvn",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Credit Report from FirstCentral Credit Bureau - Invalid BVN",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Get Credit Report from FirstCentral Credit Bureau - Verify that the appropriate error is returned when an invalid BVN is passed as a path parameter\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.contains(\"BVN is required\");\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{TOKEN}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://adjutor.lendsqr.com/v2/creditbureaus/firstcentral/:bvn",
+									"protocol": "https",
+									"host": [
+										"adjutor",
+										"lendsqr",
+										"com"
+									],
+									"path": [
+										"v2",
+										"creditbureaus",
+										"firstcentral",
+										":bvn"
+									],
+									"variable": [
+										{
+											"key": "bvn",
+											"value": "2229338*&^%"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Credit Report from FirstCentral Credit Bureau - Incomplete BVN Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Get Credit Report from FirstCentral Credit Bureau - Verify that the appropriate error is returned when an incomplete BVN is passed as a path parameter\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.contains(\"BVN is required\");\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{TOKEN}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://adjutor.lendsqr.com/v2/creditbureaus/firstcentral/:bvn",
+									"protocol": "https",
+									"host": [
+										"adjutor",
+										"lendsqr",
+										"com"
+									],
+									"path": [
+										"v2",
+										"creditbureaus",
+										"firstcentral",
+										":bvn"
+									],
+									"variable": [
+										{
+											"key": "bvn",
+											"value": "2229338"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Decisioning Copy",
+			"item": [
+				{
+					"name": "Get Decision Models",
+					"item": [
+						{
+							"name": "Get Decision Models - Successful",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"decisionID\", pm.response.json().data[0].id);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Get Decision Models - Verify that the endpoint is able to get decision models successfully\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.contains(\"Successful\");\r",
+											"});\r",
+											"pm.test(\"Get Decision Models - Verify that decision models are returned\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.data).to.not.empty;\r",
+											"    pm.expect(jsonData.data[0].name).to.not.empty;\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{TOKEN}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://adjutor.lendsqr.com/v2/decisioning/models",
+									"protocol": "https",
+									"host": [
+										"adjutor",
+										"lendsqr",
+										"com"
+									],
+									"path": [
+										"v2",
+										"decisioning",
+										"models"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Decision Models - No Auth",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 401\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											"pm.test(\"Get Decision Models - Verify that the appropriate error is returned when auth token isn't passed in the header\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.contains(\"Invalid Authorization\");\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{TOKEN}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "https://adjutor.lendsqr.com/v2/decisioning/models",
+									"protocol": "https",
+									"host": [
+										"adjutor",
+										"lendsqr",
+										"com"
+									],
+									"path": [
+										"v2",
+										"decisioning",
+										"models"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get Decision Models Details",
+					"item": [
+						{
+							"name": "Get Decision Model Details - Successful",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Get Decision Model Details - Verify that the endpoint is able to get decision model details successfully\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.contains(\"Successful\");\r",
+											"});\r",
+											"pm.test(\"Get Decision Model Details - Verify that the correct Decision Model Detail is returned\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.data.id).to.eql(pm.environment.get(\"decisionID\"));\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{TOKEN}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://adjutor.lendsqr.com/v2/decisioning/models/:id/settings",
+									"protocol": "https",
+									"host": [
+										"adjutor",
+										"lendsqr",
+										"com"
+									],
+									"path": [
+										"v2",
+										"decisioning",
+										"models",
+										":id",
+										"settings"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{decisionID}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Decision Model Details - No Decision ID",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Get Decision Model Details - Verify that the appropriate error is returned when decision ID isn't passed as a path parameter in the request\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.contains(\"Decision model not found\");\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{TOKEN}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://adjutor.lendsqr.com/v2/decisioning/models/:id/settings",
+									"protocol": "https",
+									"host": [
+										"adjutor",
+										"lendsqr",
+										"com"
+									],
+									"path": [
+										"v2",
+										"decisioning",
+										"models",
+										":id",
+										"settings"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Decision Model Details - Invalid Decision ID",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Get Decision Model Details - Verify that the appropriate error is returned when an invalid decision ID is passed as a path parameter in the request\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.contains(\"Decision model not found\");\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{TOKEN}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://adjutor.lendsqr.com/v2/decisioning/models/:id/settings",
+									"protocol": "https",
+									"host": [
+										"adjutor",
+										"lendsqr",
+										"com"
+									],
+									"path": [
+										"v2",
+										"decisioning",
+										"models",
+										":id",
+										"settings"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "*&6"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Decision Model Details - No Auth",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 401\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											"pm.test(\"Get Decision Model Details - Verify that the appropriate error is returned when auth token isn't passed in the header\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.contains(\"Invalid Authorization\");\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{TOKEN}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "https://adjutor.lendsqr.com/v2/decisioning/models/:id/settings",
+									"protocol": "https",
+									"host": [
+										"adjutor",
+										"lendsqr",
+										"com"
+									],
+									"path": [
+										"v2",
+										"decisioning",
+										"models",
+										":id",
+										"settings"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{decisionID}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Data for Lenders",
+			"item": [
+				{
+					"name": "Options",
+					"item": [
+						{
+							"name": "Options - Successful",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Options - Verify that data options are retrieved successfully\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.success).to.eql(true);\r",
+											"});\r",
+											"pm.test(\"Options - Data option details are returned\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.data).to.not.empty;\r",
+											"    pm.expect(jsonData.data[0].name).to.not.empty;\r",
+											"    pm.expect(jsonData.data[0].description).to.not.empty;\r",
+											"    pm.expect(jsonData.data[0].path).to.not.empty;\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{TOKEN}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://adjutor.lendsqr.com/v2/data/options",
+									"protocol": "https",
+									"host": [
+										"adjutor",
+										"lendsqr",
+										"com"
+									],
+									"path": [
+										"v2",
+										"data",
+										"options"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Options - No Auth",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 401\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											"pm.test(\"Options - Verify that the appropriate error is returned when auth token isn't passed in the header\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.contains(\"Invalid Authorization\");\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{TOKEN}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "https://adjutor.lendsqr.com/v2/data/options",
+									"protocol": "https",
+									"host": [
+										"adjutor",
+										"lendsqr",
+										"com"
+									],
+									"path": [
+										"v2",
+										"data",
+										"options"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "Users - Successful",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Users - Verify that users are retrieved successfully\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.success).to.eql(true);\r",
+											"});\r",
+											"pm.test(\"Users - User details are returned\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.data).to.not.empty;\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{TOKEN}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://adjutor.lendsqr.com/v2/data/users",
+									"protocol": "https",
+									"host": [
+										"adjutor",
+										"lendsqr",
+										"com"
+									],
+									"path": [
+										"v2",
+										"data",
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Users - No Auth",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 401\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											"pm.test(\"Users - Verify that the appropriate error is returned when auth token isn't passed in the header\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.contains(\"Invalid Authorization\");\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{TOKEN}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "https://adjutor.lendsqr.com/v2/data/users",
+									"protocol": "https",
+									"host": [
+										"adjutor",
+										"lendsqr",
+										"com"
+									],
+									"path": [
+										"v2",
+										"data",
+										"users"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Operational Services Copy",
+			"item": [
+				{
+					"name": "Profile",
+					"item": [
+						{
+							"name": "Get Adjutor Services Pricing",
+							"item": [
+								{
+									"name": "Get Adjutor Services Pricing - Successful",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"pm.test(\"Get Adjutor Services Pricing - Verify that current prices of the APIs are returned successfully\", function () {\r",
+													"    var jsonData = pm.response.json();\r",
+													"    pm.expect(jsonData.message).to.contains(\"Successful\");\r",
+													"});\r",
+													"pm.test(\"Get Adjutor Services Pricing - Pricing details are returned\", function () {\r",
+													"    var jsonData = pm.response.json();\r",
+													"    pm.expect(jsonData.data).to.not.empty;\r",
+													"});\r",
+													"pm.test(\"Response time is less than 1000ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer sk_live_0y8a0NrPNnONl7OsZZvPb37TJP61klwr39n66urf",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://adjutor.lendsqr.com/v2/profile/pricing",
+											"protocol": "https",
+											"host": [
+												"adjutor",
+												"lendsqr",
+												"com"
+											],
+											"path": [
+												"v2",
+												"profile",
+												"pricing"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Adjutor Services Pricing - No Auth",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 401\", function () {\r",
+													"    pm.response.to.have.status(401);\r",
+													"});\r",
+													"pm.test(\"Get Adjutor Services Pricing - Verify that the appropriate error is returned when auth token isn't passed in the header\", function () {\r",
+													"    var jsonData = pm.response.json();\r",
+													"    pm.expect(jsonData.message).to.contains(\"Invalid Authorization\");\r",
+													"});\r",
+													"pm.test(\"Response time is less than 1000ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer sk_live_0y8a0NrPNnONl7OsZZvPb37TJP61klwr39n66urf",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"url": {
+											"raw": "https://adjutor.lendsqr.com/v2/profile/pricing",
+											"protocol": "https",
+											"host": [
+												"adjutor",
+												"lendsqr",
+												"com"
+											],
+											"path": [
+												"v2",
+												"profile",
+												"pricing"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Get Wallet",
+							"item": [
+								{
+									"name": "Get Wallet - Successful",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"pm.test(\"Get Wallet - Verify that the wallet information is returned successfully\", function () {\r",
+													"    var jsonData = pm.response.json();\r",
+													"    pm.expect(jsonData.message).to.contains(\"Successful\");\r",
+													"});\r",
+													"pm.test(\"Get Wallet - Verify that wallet balance is returned\", function () {\r",
+													"    var jsonData = pm.response.json();\r",
+													"    pm.expect(jsonData.data).to.not.empty;\r",
+													"});\r",
+													"pm.test(\"Response time is less than 1000ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer sk_live_0y8a0NrPNnONl7OsZZvPb37TJP61klwr39n66urf",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://adjutor.lendsqr.com/v2/profile/wallet",
+											"protocol": "https",
+											"host": [
+												"adjutor",
+												"lendsqr",
+												"com"
+											],
+											"path": [
+												"v2",
+												"profile",
+												"wallet"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Wallet - No Auth",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 401\", function () {\r",
+													"    pm.response.to.have.status(401);\r",
+													"});\r",
+													"pm.test(\"Get Wallet - Verify that the appropriate error is returned when auth token isn't passed in the header\", function () {\r",
+													"    var jsonData = pm.response.json();\r",
+													"    pm.expect(jsonData.message).to.contains(\"Invalid Authorization\");\r",
+													"});\r",
+													"pm.test(\"Response time is less than 1000ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer sk_live_0y8a0NrPNnONl7OsZZvPb37TJP61klwr39n66urf",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"url": {
+											"raw": "https://adjutor.lendsqr.com/v2/profile/wallet",
+											"protocol": "https",
+											"host": [
+												"adjutor",
+												"lendsqr",
+												"com"
+											],
+											"path": [
+												"v2",
+												"profile",
+												"wallet"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Direct Debit Copy",
+			"item": [
+				{
+					"name": "Banks",
+					"item": [
+						{
+							"name": "Get All Banks",
+							"item": [
+								{
+									"name": "Get All Banks",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.environment.set(\"bankId\", pm.response.json().data.data[0].id);\r",
+													"\r",
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"pm.test(\"Get All Banks - Verify that the a list of banks is returned successfully\", function () {\r",
+													"    var jsonData = pm.response.json();\r",
+													"    pm.expect(jsonData.message).to.contains(\"success\");\r",
+													"});\r",
+													"pm.test(\"Get Wallet - Verify that bank details is returned\", function () {\r",
+													"    var jsonData = pm.response.json();\r",
+													"    pm.expect(jsonData.data.data).to.not.empty;\r",
+													"    pm.expect(jsonData.data.data[0].name).to.not.empty;\r",
+													"    pm.expect(jsonData.data.data[0].bank_code).to.not.empty;\r",
+													"});\r",
+													"pm.test(\"Response time is less than 1000ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer sk_live_0y8a0NrPNnONl7OsZZvPb37TJP61klwr39n66urf",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://adjutor.lendsqr.com/v2/direct-debit/banks?limit=100&page=1&sort_dir=ASC",
+											"protocol": "https",
+											"host": [
+												"adjutor",
+												"lendsqr",
+												"com"
+											],
+											"path": [
+												"v2",
+												"direct-debit",
+												"banks"
+											],
+											"query": [
+												{
+													"key": "limit",
+													"value": "100"
+												},
+												{
+													"key": "page",
+													"value": "1"
+												},
+												{
+													"key": "sort_dir",
+													"value": "ASC"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get All Banks - No Auth",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 401\", function () {\r",
+													"    pm.response.to.have.status(401);\r",
+													"});\r",
+													"pm.test(\"Get All Banks - Verify that the appropriate error is returned when auth token isn't passed in the header\", function () {\r",
+													"    var jsonData = pm.response.json();\r",
+													"    pm.expect(jsonData.message).to.contains(\"Invalid Authorization\");\r",
+													"});\r",
+													"pm.test(\"Response time is less than 1000ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer sk_live_0y8a0NrPNnONl7OsZZvPb37TJP61klwr39n66urf",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"url": {
+											"raw": "https://adjutor.lendsqr.com/v2/direct-debit/banks?limit=100&page=1&sort_dir=ASC",
+											"protocol": "https",
+											"host": [
+												"adjutor",
+												"lendsqr",
+												"com"
+											],
+											"path": [
+												"v2",
+												"direct-debit",
+												"banks"
+											],
+											"query": [
+												{
+													"key": "limit",
+													"value": "100"
+												},
+												{
+													"key": "page",
+													"value": "1"
+												},
+												{
+													"key": "sort_dir",
+													"value": "ASC"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Get Details of a Bank",
+							"item": [
+								{
+									"name": "Get Details of a Bank - Successful",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"pm.test(\"Get Details of a Bank - Verify that the correct bank Detail is returned\", function () {\r",
+													"    var jsonData = pm.response.json();\r",
+													"    pm.expect(jsonData.data.id).to.eql(pm.environment.get(\"bankId\"));\r",
+													"});\r",
+													"pm.test(\"Response time is less than 1000ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer sk_live_0y8a0NrPNnONl7OsZZvPb37TJP61klwr39n66urf",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://adjutor.lendsqr.com/v2/direct-debit/banks/:bank_id",
+											"protocol": "https",
+											"host": [
+												"adjutor",
+												"lendsqr",
+												"com"
+											],
+											"path": [
+												"v2",
+												"direct-debit",
+												"banks",
+												":bank_id"
+											],
+											"variable": [
+												{
+													"key": "bank_id",
+													"value": "{{bankId}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Details of a Bank - No Bank ID",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													"pm.test(\"Get Details of a Bank - Verify that the appropriate error is returned when bank ID isn't passed in the path parameter of the requst\", function () {\r",
+													"    var jsonData = pm.response.json();\r",
+													"    pm.expect(jsonData.message).to.contains(\"Bank ID is required\");\r",
+													"});\r",
+													"pm.test(\"Response time is less than 1000ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer sk_live_0y8a0NrPNnONl7OsZZvPb37TJP61klwr39n66urf",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://adjutor.lendsqr.com/v2/direct-debit/banks/:bank_id",
+											"protocol": "https",
+											"host": [
+												"adjutor",
+												"lendsqr",
+												"com"
+											],
+											"path": [
+												"v2",
+												"direct-debit",
+												"banks",
+												":bank_id"
+											],
+											"variable": [
+												{
+													"key": "bank_id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Details of a Bank - Invalid Bank ID",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													"pm.test(\"Get Details of a Bank - Verify that the appropriate error is returned when an invalid bank ID isn't passed in the path parameter of the requst\", function () {\r",
+													"    var jsonData = pm.response.json();\r",
+													"    pm.expect(jsonData.message).to.contains(\"Bank ID is invalid\");\r",
+													"});\r",
+													"pm.test(\"Response time is less than 1000ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer sk_live_0y8a0NrPNnONl7OsZZvPb37TJP61klwr39n66urf",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://adjutor.lendsqr.com/v2/direct-debit/banks/:bank_id",
+											"protocol": "https",
+											"host": [
+												"adjutor",
+												"lendsqr",
+												"com"
+											],
+											"path": [
+												"v2",
+												"direct-debit",
+												"banks",
+												":bank_id"
+											],
+											"variable": [
+												{
+													"key": "bank_id",
+													"value": "1234u4i3oi4u"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Details of a Bank - No Auth",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 401\", function () {\r",
+													"    pm.response.to.have.status(401);\r",
+													"});\r",
+													"pm.test(\"Get Details of a Bank - Verify that the appropriate error is returned when auth token isn't passed in the header\", function () {\r",
+													"    var jsonData = pm.response.json();\r",
+													"    pm.expect(jsonData.message).to.contains(\"Invalid Authorization\");\r",
+													"});\r",
+													"pm.test(\"Response time is less than 1000ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer sk_live_0y8a0NrPNnONl7OsZZvPb37TJP61klwr39n66urf",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"url": {
+											"raw": "https://adjutor.lendsqr.com/v2/direct-debit/banks/:bank_id",
+											"protocol": "https",
+											"host": [
+												"adjutor",
+												"lendsqr",
+												"com"
+											],
+											"path": [
+												"v2",
+												"direct-debit",
+												"banks",
+												":bank_id"
+											],
+											"variable": [
+												{
+													"key": "bank_id",
+													"value": "1234u4i3oi4u"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}
