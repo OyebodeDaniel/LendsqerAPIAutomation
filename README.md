@@ -21,12 +21,12 @@ How to set up and run the test scripts
 The user has node installed   
 The user has newman installed 
 
-1. Download Postman collection & enviroment
-2. Save collection & environment to desired location
-3. Open cmd and change the root directry to where the automated file is stored - cd c:\automated filed
+1. Download Postman collection & environment
+2. Save collection & environment to the desired location
+3. Open cmd and change the root directory to where the automated file is stored - cd c:\automated filed
 4. Run this command to run the automated scripts - Newman run Oyebode_Lendsqr_Assessment.postman_collection.json -e  Lendsqr_Environment.postman_environment.json -r htmlextra
 5. Check the file directory the JSON files are saved
-6. A folder called "newman" would be created
-7. Open the newman folder
+6. A folder called "Newman" would be created
+7. Open the Newman folder
 8. An automated test summary report should be saved
    
