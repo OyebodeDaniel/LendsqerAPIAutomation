@@ -3,7 +3,7 @@
 How to set up and run the test scripts
 
 **Method 1**
-Use postman runner 
+- Use postman runner 
 1. Launch the Postman web application (https://identity.getpostman.com/login) or desktop application
 2. Login/create an account
 3. Create a new collection
